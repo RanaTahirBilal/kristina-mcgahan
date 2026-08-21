@@ -148,7 +148,7 @@
       var msg  = (form.querySelector('#f-msg')  || {}).value || '';
       if (!name || !mail || !msg) { return; }        /* let validation speak */
       e.preventDefault();
-      var body = msg + '\n\n\u2014 ' + name + '\n' + mail;
+      var body = msg + '\n\n' + name + '\n' + mail;
       window.location.href = 'mailto:info@whateverynursemustknow.com'
         + '?subject=' + encodeURIComponent('Website enquiry from ' + name)
         + '&body=' + encodeURIComponent(body);

@@ -164,6 +164,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 }
 .btn-solid{ background:var(--ink); color:#fff; }
 .btn-solid:hover{ background:var(--deep-dk); transform:translateY(-2px); }
+.btn-pulse{ background:var(--pulse); color:#08171A; }
+.btn-pulse:hover{ background:#fff; transform:translateY(-2px); }
 .btn-line{ border-color:var(--ink); color:var(--ink); }
 .btn-line:hover{ background:var(--ink); color:#fff; transform:translateY(-2px); }
 
@@ -333,6 +335,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 .rec-list{ list-style:none; margin:0; padding:0; }
 .rec-list li{ border-top:1px solid rgba(95,216,196,.26); padding:20px 0; }
 .rec-list li:last-child{ border-bottom:1px solid rgba(95,216,196,.26); }
+.rec-cta{ margin-top:clamp(24px,3vw,36px); }
+.rec-cta-note{ margin:16px 0 0; font-size:15.5px; line-height:1.6; color:var(--muted-lt); max-width:40ch; }
 .rec-list b{
     display:block; font-family:var(--display); font-weight:700; font-size:16px;
     letter-spacing:.02em; color:#fff; margin-bottom:6px;
