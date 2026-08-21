@@ -89,9 +89,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     font-family:var(--display); font-weight:700; font-size:19px; letter-spacing:.05em;
     color:#fff; text-decoration:none;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    min-width:44px; min-height:44px; padding:6px 8px;
+    min-width:44px; min-height:52px; padding:6px 8px;
 }
-.rail .mark span{ display:block; width:26px; height:2px; background:var(--pulse); margin:12px auto 0; }
+/* flex:none is load-bearing: as a shrinkable flex item inside .mark this
+   collapsed to 0px and the accent bar never drew. */
+.rail .mark span{
+    display:block; flex:none; width:26px; height:2px;
+    background:var(--pulse); margin:12px auto 0;
+}
 .rail nav{ margin:auto 0; display:flex; flex-direction:column; gap:24px; }
 .rail nav a{
     writing-mode:vertical-rl; transform:rotate(180deg);
@@ -103,9 +108,23 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 }
 .rail nav a:hover,.rail nav a.on{ color:#fff; }
 .rail nav a.on{ box-shadow:-3px 0 0 var(--pulse); }
-.rail-foot{
-    font-family:var(--display); font-size:11px; letter-spacing:.2em; text-transform:uppercase;
-    color:rgba(237,230,218,.72); writing-mode:vertical-rl; transform:rotate(180deg); margin:0;
+/* The rail used to end in a location label that wrapped onto two ragged
+   vertical lines. It is now a scroll trace: the line fills as you read, and
+   the beat below it is the same spike the timeline and the strip are drawn
+   from. */
+.rail-end{ display:flex; flex-direction:column; align-items:center; gap:14px; }
+.rail-prog{
+    width:2px; height:clamp(56px,11vh,104px);
+    background:rgba(237,230,218,.20); position:relative; overflow:hidden;
+}
+.rail-prog span{
+    position:absolute; left:0; top:0; width:100%; height:0;
+    background:var(--pulse); box-shadow:0 0 8px rgba(95,216,196,.55);
+}
+.rail-beat{ width:20px; height:32px; display:block; opacity:.55; }
+.rail-beat path{
+    fill:none; stroke:var(--pulse); stroke-width:2;
+    stroke-linecap:round; stroke-linejoin:round;
 }
 .page{ margin-left:var(--rail); position:relative; z-index:2; }
 .bar{ display:none; }

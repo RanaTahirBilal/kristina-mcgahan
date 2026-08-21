@@ -79,6 +79,30 @@
     sections.forEach(function (s) { if (s) { sio.observe(s); } });
   }
 
+
+  /* ---------- rail scroll trace ----------
+     A passive listener writing one style property. With no JS the track just
+     sits empty, which is why it is drawn as a track and not as a bar. */
+  var prog = document.querySelector('[data-prog]');
+  if (prog) {
+    var ticking = false;
+    var paint = function () {
+      var doc = document.documentElement;
+      var max = doc.scrollHeight - window.innerHeight;
+      var pct = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      prog.style.height = (pct * 100).toFixed(2) + '%';
+      ticking = false;
+    };
+    var onScroll = function () {
+      if (ticking) { return; }
+      ticking = true;
+      window.setTimeout(paint, 60);        /* timers, not rAF: rAF is dead in a hidden tab */
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    paint();
+  }
+
   /* ---------- mobile drawer ----------
      aria-expanded is mirrored, Escape closes and returns focus, and Tab is
      trapped while the drawer is the only thing on screen. */
