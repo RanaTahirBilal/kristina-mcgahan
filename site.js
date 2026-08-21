@@ -1,4 +1,4 @@
-/* Kristina M. McGahan — behaviour.
+/* Kristina M. McGahan: behaviour.
 
    Two rules hold throughout:
    1. Every element's resting state is visible. Start states live behind
