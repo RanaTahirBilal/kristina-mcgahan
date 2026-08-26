@@ -164,8 +164,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 }
 .btn-solid{ background:var(--ink); color:#fff; }
 .btn-solid:hover{ background:var(--deep-dk); transform:translateY(-2px); }
-.btn-pulse{ background:var(--pulse); color:#08171A; }
-.btn-pulse:hover{ background:#fff; transform:translateY(-2px); }
+/* .band-ink a paints links pulse-coloured, which beat .btn-pulse on
+   specificity and rendered this button as teal text on a teal ground. */
+.btn-pulse,.band-ink .btn-pulse{ background:var(--pulse); color:#08171A; }
+.btn-pulse:hover,.band-ink .btn-pulse:hover{ background:#fff; color:#08171A; transform:translateY(-2px); }
 .btn-line{ border-color:var(--ink); color:var(--ink); }
 .btn-line:hover{ background:var(--ink); color:#fff; transform:translateY(-2px); }
 
@@ -290,7 +292,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     padding:clamp(46px,6vw,96px) clamp(26px,5vw,84px);
 }
 .spread-body h2{ font-size:clamp(28px,3.4vw,52px); margin-bottom:26px; }
-.tags{ list-style:none; display:flex; flex-wrap:wrap; gap:9px; padding:0; margin:30px 0 0; }
+.tags-lead{ margin-top:26px; }
+.tags{ list-style:none; display:flex; flex-wrap:wrap; gap:9px; padding:0; margin:26px 0 0; }
 .tags li{
     font-family:var(--display); font-weight:600; font-size:12px;
     letter-spacing:.13em; text-transform:uppercase; color:var(--deep);
@@ -358,6 +361,19 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     width:100%; max-width:520px; margin-inline:auto;
     filter:drop-shadow(0 34px 60px rgba(0,0,0,.6));
 }
+/* what is actually inside the book */
+.inside{ list-style:none; margin:30px 0 0; padding:0; }
+.inside li{ border-top:1px solid rgba(95,216,196,.24); padding:15px 0; }
+.inside li:last-child{ border-bottom:1px solid rgba(95,216,196,.24); }
+.inside b{
+    display:block; font-family:var(--display); font-weight:700; font-size:16px;
+    color:#fff; margin-bottom:5px;
+}
+.inside span{ font-size:15.5px; line-height:1.55; color:var(--muted-lt); }
+.inside-who{
+    margin:20px 0 0; font-size:16px; line-height:1.6; color:var(--muted-lt); max-width:52ch;
+}
+
 .editions{ list-style:none; margin:32px 0 14px; padding:0; }
 .editions li{
     display:grid; grid-template-columns:1fr auto auto; align-items:center; gap:16px 24px;
@@ -398,6 +414,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     display:block; font-weight:600; letter-spacing:.14em;
     color:var(--muted); margin-top:5px;
 }
+.voice-row{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(24px,3vw,44px);
+    margin-top:clamp(30px,3.6vw,52px);
+}
+.voice-row .voice p{ font-size:clamp(17px,1.35vw,20px); line-height:1.55; }
 .voice-note{ font-size:14px; color:var(--muted); margin:clamp(24px,2.6vw,34px) 0 0; }
 
 /* ---------- record: the career, drawn like a strip ---------- */
@@ -563,6 +584,7 @@ html:not(.js-motion) .rec-tag-b{ opacity:1; }
     .creds{ grid-template-columns:1fr; }
     .contact-grid{ grid-template-columns:1fr; }
     .voice-wrap{ grid-template-columns:1fr; }
+    .voice-row{ grid-template-columns:1fr; }
     .voice-fig{ height:clamp(220px,52vw,340px); }
     .strip-cap{ grid-template-columns:1fr; gap:16px; }
     .duo{ grid-template-columns:1fr; }
